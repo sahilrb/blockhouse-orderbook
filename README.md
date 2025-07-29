@@ -1,4 +1,4 @@
-# blockhouse-orderbook
+# Blockhouse-Orderbook
 MBP-10 order book reconstruction from MBO data
 
 Problem:
