@@ -1,5 +1,5 @@
 # Blockhouse-Orderbook
-MBP-10 order book reconstruction from MBO data
+MBP-10 order book reconstruction from MBO data.
 
 Problem:
 Convert Market-by-Order (MBO) feed into Market-by-Price (MBP-10) snapshots.
