@@ -1,5 +1,6 @@
 #include "orderbook.hpp"
 #include <iomanip>
+#include <sstream>
 
 void OrderBook::add_order(long order_id, double price, int size, char side) {
     order_map[order_id] = {price, size, side};
@@ -19,35 +20,31 @@ void OrderBook::handle_trade(double price, int size, char side) {
 }
 
 void OrderBook::update_book(char side, double price, int size) {
-    std::map<double, int>* book = (side == 'B') ? (std::map<double, int>*)&bids : &asks;
-    (*book)[price] += size;
-    if ((*book)[price] <= 0) {
-        book->erase(price);
+    if (side == 'B') {
+        bids[price] += size;
+        if (bids[price] <= 0) bids.erase(price);
+    } else {
+        asks[price] += size;
+        if (asks[price] <= 0) asks.erase(price);
     }
 }
 
-
-std::string OrderBook::snapshot(const std::string& timestamp) {
+std::string OrderBook::snapshot_mbp10() {
     std::ostringstream out;
-    out << timestamp;
 
     int count = 0;
-    for (auto& it : bids) {
-        double px = it.first;
-        int sz = it.second;
-        out << "," << px << "," << sz;
+    for (const auto& it : bids) {
+        out << "," << it.first << "," << it.second << ",1";
         if (++count == 10) break;
     }
-    for (; count < 10; ++count) out << ",0,0";
+    for (; count < 10; ++count) out << ",0,0,0";
 
     count = 0;
-    for (auto& it : asks) {
-        double px = it.first;
-        int sz = it.second;
-        out << "," << px << "," << sz;
+    for (const auto& it : asks) {
+        out << "," << it.first << "," << it.second << ",1";
         if (++count == 10) break;
     }
-    for (; count < 10; ++count) out << ",0,0";
+    for (; count < 10; ++count) out << ",0,0,0";
 
     return out.str();
 }
