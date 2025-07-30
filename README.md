@@ -31,12 +31,12 @@ Convert Market-by-Order (MBO) feed into Market-by-Price (MBP-10) snapshots.
 - Uses maps to keep bid/ask books sorted.
 - Efficient parsing, avoids recomputation.
 - Supports A, C, T actions.
-
+- Added one test function for parsing check (to run just uncomment from main)
 ---
 
-### Instructions:
+### Instructions For Windows:
 
-reconstruction_blockhouse.exe data/mbo.csv
+.\reconstruction_blockhouse data/mbo.csv
 
 ---
 

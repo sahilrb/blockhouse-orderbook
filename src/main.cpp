@@ -4,14 +4,6 @@
 #include <sstream>
 #include <vector>
 
-// std::vector<std::string> parse_csv_row(const std::string& line) {
-//     std::vector<std::string> fields;
-//     std::stringstream ss(line);
-//     std::string field;
-//     while (getline(ss, field, ',')) fields.push_back(field);
-//     return fields;
-// }
-
 std::vector<std::string> parse_csv_row(const std::string& line) {
     std::vector<std::string> fields;
     std::stringstream ss(line);
